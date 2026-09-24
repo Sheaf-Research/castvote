@@ -15,10 +15,12 @@ Imports:
     checkmate,
     cli,
     data.table,
+    logger,
     readr,
     RcppSimdJson,
     readxl
 Suggests:
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    withr
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.1.0
