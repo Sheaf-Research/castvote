@@ -1,12 +1,3 @@
-three_candidate_contest <- function() {
-  rankings <- c(
-    repeat_rankings(c("A", "B", "C"), 4, "a"),
-    repeat_rankings(c("B", "A", "C"), 3, "b"),
-    repeat_rankings(c("C", "B", "A"), 2, "c")
-  )
-  marks_from_rankings(rankings)
-}
-
 test_that("a first-round majority wins without transfers", {
   rankings <- c(
     repeat_rankings(c("A", "B"), 6, "a"),
