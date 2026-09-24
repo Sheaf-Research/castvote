@@ -1,0 +1,5 @@
+^\.github$
+^air\.toml$
+^_pkgdown\.yml$
+^\.Rbuildignore$
+^\.gitignore$

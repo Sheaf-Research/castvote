@@ -1,0 +1,24 @@
+Package: castvote
+Title: Read, Standardize, and Tabulate Ranked-Choice Voting Data
+Version: 0.0.0.9000
+Authors@R: 
+    person("Matthew", "Pancia", email = "msp@themsp.org", role = c("aut", "cre"))
+Description:
+    Read cast vote records from multiple vendors, normalize them to a common
+    long-format schema, parse official round-by-round reports, and tabulate
+    instant-runoff elections under configurable rules.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Depends:
+    R (>= 4.4)
+Imports:
+    checkmate,
+    cli,
+    data.table,
+    readr,
+    RcppSimdJson,
+    readxl
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0

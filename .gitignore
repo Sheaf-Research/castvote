@@ -1,0 +1,80 @@
+# R and RStudio session artifacts
+.Rhistory
+.Rapp.history
+.RData
+.RDataTmp
+.Ruserdata
+.Rproj.user/
+*.Rproj
+
+# R environment files and secrets
+.Renviron
+.Renviron.*
+!.Renviron.example
+.httr-oauth
+*.key
+*.pem
+
+# R CMD build and check output
+/*.tar.gz
+/*.Rcheck/
+/revdep/
+
+# Compiled code
+*.o
+*.so
+*.dll
+*.dylib
+*.a
+*.dSYM/
+src/*.o
+src/*.so
+src/*.dll
+
+# Generated vignette output
+vignettes/*.html
+vignettes/*.pdf
+inst/doc/
+
+# knitr and R Markdown caches and intermediates
+*_cache/
+/cache/
+*.utf8.md
+*.knit.md
+*.files/
+_freeze/
+.quarto/
+
+# pkgdown site
+docs/
+
+# testthat snapshots recorded on failure
+tests/testthat/_snaps/**/*.new.md
+
+# renv library (renv.lock is committed)
+renv/library/
+renv/local/
+renv/staging/
+renv/python/
+renv/sandbox/
+
+# downloaded data and local caches (data is fetched from the registry)
+/inst/extdata/downloads/
+/data-raw/downloads/
+
+# RStudio Connect
+rsconnect/
+
+# translation temporary files
+po/*~
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# editors
+.vscode/
+.idea/
+*.swp
+*~
