@@ -82,19 +82,19 @@ wineds_flag <- function(x) {
 wineds_resolve <- function(ballot, lookup) {
   contests <- lookup[
     record_type == "Contest",
-    .(contest_code = id, contest_id = description)
+    list(contest_code = id, contest_id = description)
   ]
   candidates <- lookup[
     record_type == "Candidate",
-    .(candidate_code = id, candidate_id = description)
+    list(candidate_code = id, candidate_id = description)
   ]
   precincts <- lookup[
     record_type == "Precinct",
-    .(precinct_code = id, precinct_id = description)
+    list(precinct_code = id, precinct_id = description)
   ]
   tallies <- lookup[
     record_type == "Tally Type",
-    .(tally_type_id = as.integer(id), tally = description)
+    list(tally_type_id = as.integer(id), tally = description)
   ]
 
   marks <- data.table::as.data.table(ballot)
@@ -132,7 +132,7 @@ wineds_resolve <- function(ballot, lookup) {
     sort = FALSE
   )
 
-  marks[, .(
+  marks[, list(
     ballot_id,
     contest_id,
     precinct_id,

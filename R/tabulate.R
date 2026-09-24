@@ -121,9 +121,9 @@ tabulate_irv <- function(
     active <- active_choices(marks, continuing, rules, prepared)
 
     tallies <- if (is.null(ballot_weights)) {
-      active[, .(votes = .N), by = candidate_id]
+      active[, list(votes = .N), by = candidate_id]
     } else {
-      active[, .(votes = sum(ballot_weights[ballot_id])), by = candidate_id]
+      active[, list(votes = sum(ballot_weights[ballot_id])), by = candidate_id]
     }
     counts <- tallies[
       data.table::data.table(candidate_id = continuing),
@@ -131,7 +131,7 @@ tabulate_irv <- function(
     ]
     counts[is.na(votes), votes := 0L]
     counts[, `:=`(round = round_number, continuing = TRUE)]
-    counts <- counts[, .(round, candidate_id, votes, continuing)]
+    counts <- counts[, list(round, candidate_id, votes, continuing)]
     rounds[[round_number]] <- counts
 
     active_votes <- sum(counts$votes)

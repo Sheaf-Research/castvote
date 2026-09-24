@@ -257,28 +257,28 @@ read_dominion <- function(zip_path, contests = NULL, files = NULL, cores = 1L) {
 
   marks <- merge(
     marks,
-    contest_man[, .(contestId = Id, contest = Description)],
+    contest_man[, list(contestId = Id, contest = Description)],
     by = "contestId",
     all.x = TRUE,
     sort = FALSE
   )
   marks <- merge(
     marks,
-    candidate_man[, .(candidateId = Id, candidate = Description)],
+    candidate_man[, list(candidateId = Id, candidate = Description)],
     by = "candidateId",
     all.x = TRUE,
     sort = FALSE
   )
   marks <- merge(
     marks,
-    portion_man[, .(precinctPortionId = Id, precinct = Description)],
+    portion_man[, list(precinctPortionId = Id, precinct = Description)],
     by = "precinctPortionId",
     all.x = TRUE,
     sort = FALSE
   )
   marks <- merge(
     marks,
-    counting_man[, .(countingGroupId = Id, counting_group = Description)],
+    counting_man[, list(countingGroupId = Id, counting_group = Description)],
     by = "countingGroupId",
     all.x = TRUE,
     sort = FALSE
@@ -287,7 +287,7 @@ read_dominion <- function(zip_path, contests = NULL, files = NULL, cores = 1L) {
   marks <- marks[rank >= 1L & candidateId > 0L & isVote %in% TRUE]
   marks[, `:=`(is_overvote = FALSE, is_skipped = FALSE)]
 
-  out <- marks[, .(
+  out <- marks[, list(
     ballot_id,
     contest_id = contest,
     precinct_id = precinct,

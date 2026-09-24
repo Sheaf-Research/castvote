@@ -7,7 +7,7 @@ resolve_ballot <- function(marks, continuing, rules) {
       !is_overvote &
       !is_skipped
   ]
-  first_ranks <- candidate_marks[, .(first_rank = min(rank)), by = candidate_id]
+  first_ranks <- candidate_marks[, list(first_rank = min(rank)), by = candidate_id]
   duplicate_ids <- first_ranks[
     candidate_marks[, .N, by = candidate_id][N > 1L],
     candidate_id,
@@ -112,7 +112,7 @@ resolve_ballots <- function(ballots, continuing, rules) {
     })))
   }
 
-  ballot_ids <- unique(ballots[, .(ballot_id)])
+  ballot_ids <- unique(ballots[, list(ballot_id)])
   candidate_marks <- ballots[
     !is.na(candidate_id) &
       !is_invalid_writein &
@@ -121,7 +121,7 @@ resolve_ballots <- function(ballots, continuing, rules) {
   ]
   duplicate_ids <- candidate_marks[,
     .N,
-    by = .(ballot_id, candidate_id)
+    by = list(ballot_id, candidate_id)
   ][N > 1L, unique(ballot_id)]
   if (identical(rules$duplicate_candidate, "error") && length(duplicate_ids)) {
     cli::cli_abort(
@@ -144,29 +144,29 @@ resolve_ballots <- function(ballots, continuing, rules) {
     candidate_marks <- candidate_marks[!ballot_id %in% duplicate_ids]
   } else if (identical(rules$duplicate_candidate, "invalidate_duplicate")) {
     first_ranks <- candidate_marks[,
-      .(first_rank = min(rank)),
-      by = .(ballot_id, candidate_id)
+      list(first_rank = min(rank)),
+      by = list(ballot_id, candidate_id)
     ]
     candidate_marks <- first_ranks[
       candidate_marks,
-      on = .(ballot_id, candidate_id),
+      on = list(ballot_id, candidate_id),
       nomatch = 0L
-    ][rank == first_rank, .(ballot_id, rank, candidate_id)]
+    ][rank == first_rank, list(ballot_id, rank, candidate_id)]
   }
 
   candidate_marks <- candidate_marks[candidate_id %in% continuing]
   candidate_by_rank <- candidate_marks[
     order(ballot_id, rank, candidate_id),
-    .(candidate_id = candidate_id[1L]),
-    by = .(ballot_id, rank)
+    list(candidate_id = candidate_id[1L]),
+    by = list(ballot_id, rank)
   ]
   rank_state <- ballots[,
-    .(skipped = any(is_skipped), overvote = any(is_overvote)),
-    by = .(ballot_id, rank)
+    list(skipped = any(is_skipped), overvote = any(is_overvote)),
+    by = list(ballot_id, rank)
   ][skipped == FALSE]
   rank_state <- rank_state[
     candidate_by_rank,
-    on = .(ballot_id, rank),
+    on = list(ballot_id, rank),
     candidate_id := i.candidate_id
   ]
   rank_state <- rank_state[overvote | !is.na(candidate_id)]
@@ -181,7 +181,7 @@ resolve_ballots <- function(ballots, continuing, rules) {
       candidate_id
     ),
     status = data.table::fifelse(overvote, "exhausted_overvote", "active")
-  )][, .(ballot_id, candidate_id, status)]
+  )][, list(ballot_id, candidate_id, status)]
   resolved_ids <- choices$ballot_id
   exhausted <- ballot_ids[
     !ballot_id %in%
@@ -189,7 +189,7 @@ resolve_ballots <- function(ballots, continuing, rules) {
         resolved_ids,
         invalid_duplicates$ballot_id
       )
-  ][, .(
+  ][, list(
     ballot_id,
     candidate_id = NA_character_,
     status = "exhausted"
@@ -204,7 +204,7 @@ resolve_ballots <- function(ballots, continuing, rules) {
 #' Prepare ballot matrices for the fast resolution path
 #' @noRd
 prepare_ballots <- function(ballots, rules) {
-  ballot_ids <- unique(ballots[, .(ballot_id)])
+  ballot_ids <- unique(ballots[, list(ballot_id)])
   ballot_index <- stats::setNames(
     seq_len(nrow(ballot_ids)),
     ballot_ids$ballot_id
@@ -217,7 +217,7 @@ prepare_ballots <- function(ballots, rules) {
   ]
   duplicate_ids <- candidate_marks[,
     .N,
-    by = .(ballot_id, candidate_id)
+    by = list(ballot_id, candidate_id)
   ][N > 1L, unique(ballot_id)]
   if (identical(rules$duplicate_candidate, "error") && length(duplicate_ids)) {
     cli::cli_abort(
@@ -235,14 +235,14 @@ prepare_ballots <- function(ballots, rules) {
     candidate_marks <- candidate_marks[!ballot_id %in% duplicate_ids]
   } else if (identical(rules$duplicate_candidate, "invalidate_duplicate")) {
     first_ranks <- candidate_marks[,
-      .(first_rank = min(rank)),
-      by = .(ballot_id, candidate_id)
+      list(first_rank = min(rank)),
+      by = list(ballot_id, candidate_id)
     ]
     candidate_marks <- first_ranks[
       candidate_marks,
-      on = .(ballot_id, candidate_id),
+      on = list(ballot_id, candidate_id),
       nomatch = 0L
-    ][rank == first_rank, .(ballot_id, rank, candidate_id)]
+    ][rank == first_rank, list(ballot_id, rank, candidate_id)]
     invalid_duplicates <- invalid_duplicates[0L]
   }
 
@@ -254,7 +254,7 @@ prepare_ballots <- function(ballots, rules) {
   )
   candidate_marks <- candidate_marks[
     order(ballot_id, rank, candidate_id)
-  ][!duplicated(candidate_marks[, .(ballot_id, rank)])]
+  ][!duplicated(candidate_marks[, list(ballot_id, rank)])]
   candidate_matrix[cbind(
     ballot_index[candidate_marks$ballot_id],
     candidate_marks$rank

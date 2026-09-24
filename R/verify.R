@@ -25,27 +25,27 @@ verify_tabulator <- function(tabulation, official) {
 
   expected_rounds <- official$rounds[
     votes > 0,
-    .(candidate_id, votes, official_round = round)
+    list(candidate_id, votes, official_round = round)
   ]
   expected_rounds[,
     state := paste(sort(paste(candidate_id, votes)), collapse = "|"),
     by = official_round
   ]
-  state_index <- unique(expected_rounds[, .(official_round, state)])
+  state_index <- unique(expected_rounds[, list(official_round, state)])
   state_index <- state_index[!duplicated(state)]
   state_index[, round := seq_len(.N)]
   expected_rounds[, round := match(state, state_index$state)]
   expected_rounds[, c("official_round", "state") := NULL]
 
-  actual_rounds <- tabulation$rounds[, .(round, candidate_id, votes)]
+  actual_rounds <- tabulation$rounds[, list(round, candidate_id, votes)]
   round_mismatches <- data.table::merge.data.table(
     actual_rounds,
-    expected_rounds[, .(round, candidate_id, official_votes = votes)],
+    expected_rounds[, list(round, candidate_id, official_votes = votes)],
     by = c("round", "candidate_id"),
     all = TRUE
   )[
     is.na(votes) | is.na(official_votes) | votes != official_votes,
-    .(round, candidate_id, votes, official_votes)
+    list(round, candidate_id, votes, official_votes)
   ]
 
   actual_eliminated <- data.table::data.table(
@@ -54,7 +54,7 @@ verify_tabulator <- function(tabulation, official) {
   )
   expected_eliminated <- official$eliminated[
     votes > 0,
-    .(round = seq_len(.N), candidate_id)
+    list(round = seq_len(.N), candidate_id)
   ]
   elimination_mismatches <- data.table::merge.data.table(
     actual_eliminated,
@@ -66,7 +66,7 @@ verify_tabulator <- function(tabulation, official) {
     candidate_id != candidate_id_official |
       is.na(candidate_id) |
       is.na(candidate_id_official),
-    .(round, candidate_id, candidate_id_official)
+    list(round, candidate_id, candidate_id_official)
   ]
 
   final_state <- official$rounds[round == max(round) & votes > 0, sum(votes)]

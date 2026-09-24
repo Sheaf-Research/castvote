@@ -227,7 +227,7 @@ read_official_rounds <- function(path) {
       transfers[, `:=`(contest_id = contest_id, round = pass)]
     }
     list(
-      rounds = state[, .(
+      rounds = state[, list(
         contest_id,
         round,
         candidate_id,
@@ -239,7 +239,7 @@ read_official_rounds <- function(path) {
       transfers = transfers,
       summaries = state[
         1L,
-        .(
+        list(
           contest_id,
           round,
           continuing_ballots,
