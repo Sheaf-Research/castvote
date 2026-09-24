@@ -13,7 +13,15 @@ castvote_registry <- function() {
 #' @export
 castvote_elections <- function() {
   registry <- castvote_registry()
-  unique(registry[, list(id, date, jurisdiction, office, seats, vendor, format)])
+  unique(registry[, list(
+    id,
+    date,
+    jurisdiction,
+    office,
+    seats,
+    vendor,
+    format
+  )])
 }
 
 #' Source files for an election

@@ -7,7 +7,10 @@ resolve_ballot <- function(marks, continuing, rules) {
       !is_overvote &
       !is_skipped
   ]
-  first_ranks <- candidate_marks[, list(first_rank = min(rank)), by = candidate_id]
+  first_ranks <- candidate_marks[,
+    list(first_rank = min(rank)),
+    by = candidate_id
+  ]
   duplicate_ids <- first_ranks[
     candidate_marks[, .N, by = candidate_id][N > 1L],
     candidate_id,
