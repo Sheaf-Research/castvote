@@ -3,7 +3,8 @@ test_that("the default log level is WARN", {
 })
 
 test_that("castvote_log_level() sets and reads the level case-insensitively", {
-  withr::defer(castvote_log_level("warn"), testthat::teardown_env())
+  old <- castvote_log_level()
+  withr::defer(castvote_log_level(old))
 
   castvote_log_level("debug")
 
@@ -18,7 +19,8 @@ test_that("castvote_log_level() rejects an unknown level", {
 })
 
 test_that("informational logs are suppressed at WARN and shown at INFO", {
-  withr::defer(castvote_log_level("warn"), testthat::teardown_env())
+  old <- castvote_log_level()
+  withr::defer(castvote_log_level(old))
 
   castvote_log_level("warn")
   quiet <- capture.output(cv_log_info("hidden"), type = "message")
@@ -28,4 +30,17 @@ test_that("informational logs are suppressed at WARN and shown at INFO", {
   loud <- capture.output(cv_log_info("visible"), type = "message")
   expect_length(loud, 1L)
   expect_match(loud, "visible")
+})
+
+test_that("log messages are formatted with sprintf placeholders", {
+  old <- castvote_log_level()
+  withr::defer(castvote_log_level(old))
+  castvote_log_level("info")
+
+  line <- capture.output(
+    cv_log_info("Tabulating %s ballots.", 9L),
+    type = "message"
+  )
+
+  expect_match(line, "Tabulating 9 ballots.", fixed = TRUE)
 })

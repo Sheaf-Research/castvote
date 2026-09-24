@@ -63,6 +63,8 @@ cv_log_error <- function(...) {
 }
 
 .onLoad <- function(libname, pkgname) {
+  logger::log_formatter(logger::formatter_sprintf, namespace = "castvote")
+
   level <- getOption(
     "castvote.log_level",
     Sys.getenv("CASTVOTE_LOG_LEVEL", "WARN")
