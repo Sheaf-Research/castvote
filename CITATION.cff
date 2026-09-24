@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+authors:
+  - family-names: Pancia
+    given-names: Matthew
+    email: msp@themsp.org
+title: "castvote: Read, Standardize, and Tabulate Ranked-Choice Voting Data"
+version: 0.0.0.9000
+license: MIT
