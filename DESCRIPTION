@@ -18,9 +18,9 @@ Imports:
     logger,
     readr,
     RcppSimdJson,
-    readxl
-Suggests:
-    testthat (>= 3.0.0),
+    readxl,
     withr
+Suggests:
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.1.0
