@@ -3,7 +3,7 @@ test_that("read_wineds() resolves labels into canonical marks", {
 
   marks <- read_wineds(fixture$ballot, fixture$lookup)
 
-  expect_s3_class(marks, "cvr_marks")
+  expect_s3_class(marks, "data.table")
   expect_identical(marks$contest_id, rep("Mayor", 5L))
   expect_identical(
     marks$ballot_id,

@@ -117,7 +117,7 @@ castvote_download <- function(id, overwrite = FALSE) {
 #' @param contest Optional contest label to keep.
 #' @param download Whether to download missing files.
 #' @param ... Passed to the reader.
-#' @return Canonical `cvr_marks`.
+#' @return Canonical marks as a data table.
 #' @export
 castvote_fetch <- function(id, contest = NULL, download = TRUE, ...) {
   files <- castvote_election_files(id)

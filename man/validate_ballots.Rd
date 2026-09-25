@@ -10,7 +10,7 @@ validate_ballots(marks)
 \item{marks}{A data frame of marks.}
 }
 \value{
-The validated marks as a `cvr_marks` data table.
+The validated marks as a data table.
 }
 \description{
 Checks the [castvote_schema()] contract: required columns present, ballot

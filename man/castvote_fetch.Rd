@@ -16,7 +16,7 @@ castvote_fetch(id, contest = NULL, download = TRUE, ...)
 \item{...}{Passed to the reader.}
 }
 \value{
-Canonical `cvr_marks`.
+Canonical marks as a data table.
 }
 \description{
 Resolves an election's files from the local data directory or cache

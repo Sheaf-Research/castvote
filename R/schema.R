@@ -67,7 +67,7 @@ normalize_flag <- function(x, column) {
 #' input is not modified; the validated copy is returned.
 #'
 #' @param marks A data frame of marks.
-#' @return The validated marks as a `cvr_marks` data table.
+#' @return The validated marks as a data table.
 #' @export
 validate_ballots <- function(marks) {
   if (!is.data.frame(marks)) {
@@ -127,7 +127,6 @@ validate_ballots <- function(marks) {
     )
   }
 
-  data.table::setattr(marks, "class", c("cvr_marks", class(marks)))
   marks[]
 }
 
@@ -137,7 +136,7 @@ validate_ballots <- function(marks) {
 #' orders rows by ballot, rank and candidate.
 #'
 #' @param marks A data frame of marks.
-#' @return The canonical `cvr_marks` data table.
+#' @return The canonical marks as a data table.
 #' @export
 canonicalize_ballots <- function(marks) {
   marks <- validate_ballots(marks)

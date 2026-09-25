@@ -10,7 +10,7 @@ canonicalize_ballots(marks)
 \item{marks}{A data frame of marks.}
 }
 \value{
-The canonical `cvr_marks` data table.
+The canonical marks as a data table.
 }
 \description{
 Validates marks, coerces every column to the [castvote_schema()] type, and

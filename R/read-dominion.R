@@ -219,7 +219,7 @@ dominion_marks_from_entry <- function(zip_path, entry) {
 #'   (`NumOfRanks > 0` or `VoteFor > 1`).
 #' @param files Optional subset of zip entries, for testing.
 #' @param cores Files read in parallel on unix.
-#' @return Canonical `cvr_marks`.
+#' @return Canonical marks as a data table.
 #' @export
 read_dominion <- function(zip_path, contests = NULL, files = NULL, cores = 1L) {
   checkmate::assert_file_exists(zip_path, access = "r")

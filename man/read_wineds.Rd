@@ -16,7 +16,7 @@ single-column data frame.}
 line.}
 }
 \value{
-Canonical `cvr_marks`.
+Canonical marks as a data table.
 }
 \description{
 WinEDS is the fixed-width format San Francisco used before 2019. The ballot

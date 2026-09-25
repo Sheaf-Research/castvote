@@ -19,7 +19,7 @@ castvote_format <- function(path) {
 #' @param format One of `"auto"`, `"wineds"`, or `"dominion"`.
 #' @param lookup The master lookup, required for WinEDS input.
 #' @param ... Passed to the reader.
-#' @return Canonical `cvr_marks`.
+#' @return Canonical marks as a data table.
 #' @export
 read_cvr <- function(
   path,

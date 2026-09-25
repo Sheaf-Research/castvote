@@ -77,7 +77,7 @@ test_that("canonicalize_ballots() returns typed marks ordered by ballot and rank
 
   canonical <- canonicalize_ballots(x)
 
-  expect_s3_class(canonical, "cvr_marks")
+  expect_s3_class(canonical, "data.table")
   expect_type(canonical$rank, "integer")
   expect_type(canonical$ballot_id, "character")
   expect_identical(canonical$ballot_id, c("b1", "b1", "b2", "b2"))

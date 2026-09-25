@@ -68,6 +68,6 @@ test_that("castvote_fetch() reads registered files from a local data directory",
 
   marks <- castvote_fetch("sf-2018-06-mayor", contest = "Mayor")
 
-  expect_s3_class(marks, "cvr_marks")
+  expect_s3_class(marks, "data.table")
   expect_identical(data.table::uniqueN(marks$ballot_id), 254016L)
 })

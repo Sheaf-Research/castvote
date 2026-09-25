@@ -10,7 +10,7 @@
 #' @param lookup The master lookup, in the same forms as `ballot`.
 #' @param b_header,l_header Whether the ballot image and lookup carry a header
 #'   line.
-#' @return Canonical `cvr_marks`.
+#' @return Canonical marks as a data table.
 #' @export
 read_wineds <- function(ballot, lookup, b_header = FALSE, l_header = FALSE) {
   ballot_fields <- wineds_ballot_fields(wineds_lines(ballot, b_header))

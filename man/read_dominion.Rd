@@ -17,7 +17,7 @@ read_dominion(zip_path, contests = NULL, files = NULL, cores = 1L)
 \item{cores}{Files read in parallel on unix.}
 }
 \value{
-Canonical `cvr_marks`.
+Canonical marks as a data table.
 }
 \description{
 A Dominion export is a zip of `CvrExport_*.json` files plus manifest files

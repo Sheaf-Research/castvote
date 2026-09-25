@@ -16,7 +16,7 @@ test_that("read_cvr() dispatches to the WinEDS reader", {
     lookup = fixture$lookup
   )
 
-  expect_s3_class(marks, "cvr_marks")
+  expect_s3_class(marks, "data.table")
   expect_identical(nrow(marks), 5L)
 })
 
