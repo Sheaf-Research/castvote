@@ -88,8 +88,16 @@ resolve_ballot <- function(marks, continuing, rules) {
   )
 }
 
-#' Resolve all ballots against the current continuing candidate set
-#' @noRd
+#' Resolve ballots against a continuing candidate set
+#'
+#' Selects each ballot's highest-ranked continuing candidate, applying the
+#' overvote, skipped-rank and duplicate rules.
+#'
+#' @param ballots Cast-vote marks, in the [castvote_schema()] format.
+#' @param continuing Candidate ids still in the running.
+#' @param rules An [irv_rules()] object.
+#' @return A data table with `ballot_id`, `candidate_id`, and `status`.
+#' @export
 resolve_ballots <- function(ballots, continuing, rules) {
   if (
     identical(rules$skipped_rank, "continue") &&

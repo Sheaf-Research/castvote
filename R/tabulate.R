@@ -1,4 +1,8 @@
-#' @noRd
+#' Validate a candidate universe
+#'
+#' @param candidate_ids Character vector of candidate ids.
+#' @return The ids, unchanged.
+#' @export
 validate_candidate_ids <- function(candidate_ids) {
   checkmate::assert_character(
     candidate_ids,
