@@ -17,4 +17,4 @@ canonicalize_ballots(marks)
 
 ## Value
 
-The canonical \`cvr_marks\` data table.
+The canonical marks as a data table.

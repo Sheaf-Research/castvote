@@ -34,4 +34,4 @@ read_dominion(zip_path, contests = NULL, files = NULL, cores = 1L)
 
 ## Value
 
-Canonical \`cvr_marks\`.
+Canonical marks as a data table.

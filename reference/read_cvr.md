@@ -28,4 +28,4 @@ read_cvr(path, format = c("auto", "wineds", "dominion"), lookup = NULL, ...)
 
 ## Value
 
-Canonical \`cvr_marks\`.
+Canonical marks as a data table.

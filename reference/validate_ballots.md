@@ -20,4 +20,4 @@ validate_ballots(marks)
 
 ## Value
 
-The validated marks as a \`cvr_marks\` data table.
+The validated marks as a data table.

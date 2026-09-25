@@ -28,4 +28,4 @@ read_wineds(ballot, lookup, b_header = FALSE, l_header = FALSE)
 
 ## Value
 
-Canonical \`cvr_marks\`.
+Canonical marks as a data table.

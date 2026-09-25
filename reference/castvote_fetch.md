@@ -29,4 +29,4 @@ castvote_fetch(id, contest = NULL, download = TRUE, ...)
 
 ## Value
 
-Canonical \`cvr_marks\`.
+Canonical marks as a data table.
