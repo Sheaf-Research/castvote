@@ -32,6 +32,8 @@
   : Read an official round-by-round report
 - [`read_wineds()`](https://sheaf-research.github.io/castvote/reference/read_wineds.md)
   : Read a WinEDS ballot image and master lookup
+- [`resolve_ballots()`](https://sheaf-research.github.io/castvote/reference/resolve_ballots.md)
+  : Resolve ballots against a continuing candidate set
 - [`sf_candidate_ids()`](https://sheaf-research.github.io/castvote/reference/sf_candidate_ids.md)
   : San Francisco candidate universe
 - [`sf_rules()`](https://sheaf-research.github.io/castvote/reference/sf_rules.md)
@@ -40,5 +42,7 @@
   : Tabulate an instant-runoff election
 - [`validate_ballots()`](https://sheaf-research.github.io/castvote/reference/validate_ballots.md)
   : Validate normalized mark data
+- [`validate_candidate_ids()`](https://sheaf-research.github.io/castvote/reference/validate_candidate_ids.md)
+  : Validate a candidate universe
 - [`verify_tabulator()`](https://sheaf-research.github.io/castvote/reference/verify_tabulator.md)
   : Verify a tabulation against an official report

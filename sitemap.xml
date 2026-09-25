@@ -24,10 +24,12 @@
 <url><loc>https://sheaf-research.github.io/castvote/reference/read_dominion.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/read_official_rounds.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/read_wineds.html</loc></url>
+<url><loc>https://sheaf-research.github.io/castvote/reference/resolve_ballots.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/sf_candidate_ids.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/sf_rules.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/tabulate_irv.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/validate_ballots.html</loc></url>
+<url><loc>https://sheaf-research.github.io/castvote/reference/validate_candidate_ids.html</loc></url>
 <url><loc>https://sheaf-research.github.io/castvote/reference/verify_tabulator.html</loc></url>
 </urlset>
 
